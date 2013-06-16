@@ -2,11 +2,11 @@
 /*
 Plugin Name: Stop Spam Comments
 Description: Dead simple and super lightweight anti-spambot plugin. No captcha, tricky questions or any other user interaction required at all.
-Plugin URI: 
+Plugin URI: https://github.com/pinoceniccola/stop-spam-comments/archive/master.zip
 Version: 0.1
 Author: Pino Ceniccola
 Author URI: http://pino.ceniccola.it
-License: GPL 
+License: GPLv2 
 */
 
 add_action('init','p_ssc_init');
@@ -46,7 +46,7 @@ function p_ssc_process($commentdata) {
 		wp_insert_comment($commentdata);
 		// alternative: redirect spambots to their own home! 
 		//wp_redirect('http://127.0.0.1', 301 ); exit;
-		wp_die('Notice: It seems you have Javascript disabled in your Browser. In order to submit a comment to this post, please copy this code and paste it with your comment: <strong>'.$key.'</strong>');
+		wp_die('Notice: It seems you have Javascript disabled in your Browser. In order to submit a comment to this post, please copy the code below the form and paste it along with your comment.');
 	}
 }
 
@@ -59,5 +59,5 @@ function p_ssc_config($field){
 
 function p_ssc_notice($id) {
 	$key = COOKIEHASH.'_'.dechex((int) $id);	
-	echo '<noscript><p class="ssc_notice">Notice: It seems you have Javascript disabled in your Browser. In order to submit a comment to this post, please copy this code and paste it with your comment: <strong>'.$key.'</strong></p></noscript>';
+	echo '<noscript><p class="ssc_notice">Notice: It seems you have Javascript disabled in your Browser. In order to submit a comment to this post, please copy this code and paste it along with your comment: <strong>'.$key.'</strong></p></noscript>';
 }
