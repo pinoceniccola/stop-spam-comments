@@ -43,6 +43,7 @@ function p_ssc_process($commentdata) {
 	// no key = comment is spam
 	else {
 		$commentdata['comment_approved'] = 'spam';
+		do_action( 'stop_spam_found_spam_comment', $commentdata );
 		wp_insert_comment($commentdata);
 		// alternative: redirect spambots to their own home! 
 		//wp_redirect('http://127.0.0.1', 301 ); exit;
